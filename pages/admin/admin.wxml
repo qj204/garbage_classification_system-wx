@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="header">
+    <text>管理员面板</text>
+  </view>
+
+  <view class="section">
+    <view class="title">用户管理</view>
+    <view class="user-selector" bindtap="toggleUserList">
+      <text>{{selectedUser ? selectedUser.username : '选择用户'}}</text>
+      <text>▼</text>
+    </view>
+    <view class="user-list" wx:if="{{showUserList}}">
+      <view wx:for="{{userList}}" wx:key="id" bindtap="selectUser" data-user="{{item}}">
+        {{item.username}} ({{item.role === 1 ? '管理员' : '用户'}})
+        <text wx:if="{{item.status === 1}}" style="color:red">[已封禁]</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section" wx:if="{{selectedUser}}">
+    <view class="title">用户信息</view>
+    <view>用户名: {{selectedUser.username}}</view>
+    <view>角色: {{selectedUser.role === 1 ? '管理员' : '普通用户'}}</view>
+    <view>状态: {{selectedUser.status === 0 ? '正常' : '已封禁'}}</view>
+    <view>积分: {{selectedUser.points}}</view>
+
+    <view class="title">操作</view>
+    <button type="warn" bindtap="banUser">{{selectedUser.status === 0 ? '封禁用户' : '解封用户'}}</button>
+    
+    <view class="input-group">
+      <input type="password" placeholder="输入新密码" value="{{newPassword}}" bindinput="handleNewPassword"/>
+      <button type="primary" bindtap="changePassword">修改密码</button>
+    </view>
+  </view>
+</view>
+<!-- admin.wxml -->
+<view class="container dark-mode">
+  <!-- 原有内容保持不变，为各元素添加dark-text等类名 -->
+  <view class="user-list dark-card">
+    <!-- 列表内容 -->
+  </view>
+</view>

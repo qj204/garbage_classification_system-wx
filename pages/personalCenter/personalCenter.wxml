@@ -1,0 +1,94 @@
+<view class="cyber-container" style="--neon-color: {{neonColors[activeNeon]}}">
+  <!-- 头部区域 -->
+  <view class="cyber-header">
+    <view class="avatar-container">
+      <image 
+        src="{{avatarUrl}}" 
+        class="cyber-avatar" 
+        mode="aspectFill"
+        binderror="handleAvatarError"
+      />
+      <view class="avatar-glow"></view>
+    </view>
+    <text class="username">{{username}}</text>
+    <view class="cyber-line"></view>
+  </view>
+
+  <!-- 功能区 -->
+  <view class="cyber-section">
+    <view class="section-title">账户操作</view>
+    <view class="button-group">
+      <cyber-button 
+        text="修改密码" 
+        bindtap="goToChangePassword" 
+        color="{{neonColors[activeNeon]}}"
+      />
+      <cyber-button 
+        text="退出登录" 
+        bindtap="logout" 
+        color="#ff0000" 
+        type="danger"
+      />
+    </view>
+  </view>
+
+  <!-- 历史记录 -->
+  <view class="cyber-section">
+    <view class="section-title">识别历史</view>
+    <view wx:if="{{showHistory}}">
+      <view class="history-list">
+        <block wx:for="{{showFullHistory ? historyList : historyList.slice(0, 3)}}" wx:key="id">
+          <neon-border color="{{neonColors[activeNeon]}}">
+            <view class="history-item">
+              <view class="history-content">
+                <view class="history-time">{{item.created_at}}</view>
+                <view class="history-type">{{item.isImage ? '图片识别' : '文本识别'}}</view>
+                <view class="history-category">{{item.result_category}}</view>
+              </view>
+              <view class="history-preview" wx:if="{{item.isImage}}">
+                <image 
+                  src="{{item.image_url}}" 
+                  mode="aspectFill" 
+                  class="preview-image"
+                  data-url="{{item.image_url}}"
+                  bindtap="previewImage"
+                  data-id="{{item.id}}"
+                  binderror="handleImageError"
+                />
+                <view class="retry-btn" wx:if="{{item.imageLoadFailed}}" bindtap="retryLoadImage" data-id="{{item.id}}">
+                  <text>重试</text>
+                </view>
+              </view>
+              <view class="history-text" wx:else>
+                {{item.query_content.length > 20 ? item.query_content.substring(0, 20) + '...' : item.query_content}}
+              </view>
+              <view class="history-suggestion">{{item.category_suggestion}}</view>
+              <view class="history-actions">
+                <view class="delete-btn" bindtap="deleteHistory" data-id="{{item.id}}">
+                  <text>删除</text>
+                </view>
+              </view>
+            </view>
+          </neon-border>
+        </block>
+      </view>
+      <view class="toggle-history" bindtap="toggleHistory" wx:if="{{historyList.length > 3}}">
+        <text>{{showFullHistory ? '收起' : '查看更多'}}</text>
+        <image 
+          src="/images/arrow-{{showFullHistory ? 'up' : 'down'}}.png" 
+          class="toggle-icon"
+          style="filter: drop-shadow(0 0 5px {{neonColors[activeNeon]}})"
+        />
+      </view>
+    </view>
+    <view wx:else class="empty-tip">
+      <text>暂无历史记录</text>
+    </view>
+  </view>
+
+  <!-- 底部装饰 -->
+  <view class="cyber-footer">
+    <view class="scan-line"></view>
+    <text class="footer-text">QUANTUM RECOGNITION SYSTEM</text>
+  </view>
+</view>

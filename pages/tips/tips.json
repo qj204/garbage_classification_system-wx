@@ -1,0 +1,7 @@
+{
+  "usingComponents": {},
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "环保贴士",
+  "backgroundColor": "#f8f8f8",
+  "backgroundTextStyle": "dark"
+}

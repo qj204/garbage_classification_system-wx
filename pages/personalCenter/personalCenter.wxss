@@ -1,0 +1,256 @@
+.cyber-container {
+  min-height: 100vh;
+  background-color: #0a0a1a;
+  color: #fff;
+  padding: 20rpx;
+  font-family: 'Courier New', monospace;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.cyber-container {
+  --neon-color: #ff00ff;
+  --neon-glow: 0 0 10px var(--neon-color), 0 0 20px var(--neon-color);
+}
+
+.cyber-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40rpx;
+  position: relative;
+}
+
+.avatar-container {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+  margin-bottom: 20rpx;
+}
+
+.cyber-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4rpx solid var(--neon-color);
+  box-shadow: var(--neon-glow);
+  position: relative;
+  z-index: 2;
+}
+
+.avatar-glow {
+  position: absolute;
+  top: -10rpx;
+  left: -10rpx;
+  right: -10rpx;
+  bottom: -10rpx;
+  border-radius: 50%;
+  background: var(--neon-color);
+  filter: blur(15px);
+  opacity: 0.5;
+  z-index: 1;
+  animation: pulse 3s infinite alternate;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.7; }
+}
+
+.username {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin: 10rpx 0;
+  text-shadow: 0 0 5px var(--neon-color);
+  letter-spacing: 2rpx;
+}
+
+.cyber-line {
+  height: 2rpx;
+  width: 80%;
+  background: linear-gradient(90deg, transparent, var(--neon-color), transparent);
+  margin: 20rpx 0;
+  box-shadow: var(--neon-glow);
+}
+
+.cyber-section {
+  margin-bottom: 40rpx;
+  position: relative;
+}
+
+.section-title {
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+  padding-left: 20rpx;
+  border-left: 4rpx solid var(--neon-color);
+  text-shadow: 0 0 5px var(--neon-color);
+  letter-spacing: 2rpx;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.history-item {
+  background-color: rgba(20, 20, 40, 0.7);
+  border-radius: 12rpx;
+  padding: 20rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.history-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2rpx;
+  background: var(--neon-color);
+  box-shadow: var(--neon-glow);
+}
+
+.history-content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15rpx;
+  font-size: 28rpx;
+}
+
+.history-time {
+  color: #aaa;
+}
+
+.history-type {
+  color: var(--neon-color);
+}
+
+.history-category {
+  background-color: rgba(0, 255, 255, 0.1);
+  padding: 0 10rpx;
+  border-radius: 4rpx;
+}
+
+.history-preview {
+  width: 100%;
+  height: 200rpx;
+  margin: 15rpx 0;
+  position: relative;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+}
+
+.retry-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.history-text {
+  margin: 15rpx 0;
+  padding: 10rpx;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-left: 3rpx solid var(--neon-color);
+}
+
+.history-suggestion {
+  font-size: 26rpx;
+  color: #aaa;
+  margin: 10rpx 0;
+  padding: 10rpx;
+  background-color: rgba(0, 255, 255, 0.05);
+  border-left: 3rpx solid #00ffff;
+}
+
+.history-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-btn {
+  padding: 8rpx 20rpx;
+  background-color: rgba(255, 0, 0, 0.2);
+  color: #ff5555;
+  border-radius: 20rpx;
+  font-size: 26rpx;
+}
+
+.delete-btn:active {
+  background-color: rgba(255, 0, 0, 0.4);
+}
+
+.toggle-history {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20rpx;
+  color: var(--neon-color);
+  font-size: 28rpx;
+}
+
+.toggle-icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 10rpx;
+}
+
+.empty-tip {
+  text-align: center;
+  padding: 40rpx;
+  color: #666;
+  font-size: 28rpx;
+}
+
+.cyber-footer {
+  margin-top: 40rpx;
+  text-align: center;
+  position: relative;
+}
+
+.scan-line {
+  height: 1rpx;
+  background: linear-gradient(90deg, transparent, var(--neon-color), transparent);
+  margin-bottom: 20rpx;
+  animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100rpx); opacity: 0; }
+}
+
+.footer-text {
+  font-size: 24rpx;
+  color: #555;
+  letter-spacing: 2rpx;
+}
+
+@media (min-width: 750px) {
+  .cyber-container {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+}

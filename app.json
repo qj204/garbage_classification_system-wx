@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/garbageClassify/garbageClassify",
+    "pages/rank/rank",
+    "pages/tips/tips",
+    "pages/tipsDetail/tipsDetail",
+    "pages/personalCenter/personalCenter",
+    "pages/admin/admin",
+    "pages/changePassword/changePassword"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#09BB07",
+    "navigationBarTitleText": "垃圾分类系统",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/garbageClassify/garbageClassify",
+        "text": "垃圾分类"
+      },
+      {
+        "pagePath": "pages/rank/rank",
+        "text": "积分系统"
+      },
+      {
+        "pagePath": "pages/tips/tips",
+        "text": "环保贴士",
+        "icon": "info",              
+        "selectedIcon": "info-circle"  
+      },
+      {
+        "pagePath": "pages/personalCenter/personalCenter",
+        "text": "个人中心"
+      }
+    ],
+    "color": "#999",
+    "selectedColor": "#09BB07"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,164 @@
+<!-- pages/rank/rank.wxml -->
+<view class="container">
+  <!-- 背景装饰元素 -->
+  <view class="bg-decorations">
+    <view class="bubble bubble-1"></view>
+    <view class="bubble bubble-2"></view>
+    <view class="bubble bubble-3"></view>
+  </view>
+
+  <!-- 积分卡片 -->
+  <view class="points-card">
+    <view class="card-content">
+      <text class="points-label">我的积分</text>
+      <text class="points-value">{{currentPoints}}</text>
+    </view>
+    <view class="card-wave"></view>
+  </view>
+  
+  <!-- 选项卡 -->
+  <view class="tabs">
+    <view 
+      class="tab {{activeTab === 'rewards' ? 'active' : ''}}" 
+      data-tab="rewards" 
+      bindtap="switchTab"
+    >
+      <text>奖品商城</text>
+      <view class="tab-underline"></view>
+    </view>
+    <view 
+      class="tab {{activeTab === 'history' ? 'active' : ''}}" 
+      data-tab="history" 
+      bindtap="switchTab"
+    >
+      <text>兑换记录</text>
+      <view class="tab-underline"></view>
+    </view>
+  </view>
+  
+  <!-- 奖品列表 -->
+  <scroll-view wx:if="{{activeTab === 'rewards'}}" scroll-y class="rewards-list">
+    <view class="section-title">
+      <text>热门兑换</text>
+    </view>
+    
+    <view class="reward-grid">
+      <view wx:for="{{rewards}}" wx:key="id" class="reward-card">
+        <view class="card-tag" wx:if="{{item.stock < 10 && item.stock > 0}}">仅剩{{item.stock}}件</view>
+        <view class="card-tag" wx:if="{{item.stock <= 0}}">已售罄</view>
+        
+        <view class="reward-image">
+          <image src="{{item.imageUrl}}" 
+                 mode="aspectFill"
+                 binderror="handleImageError" />
+        </view>
+        <view class="reward-content">
+          <text class="reward-name">{{item.name}}</text>
+          <view class="reward-meta">
+            <text class="reward-points">{{item.points_cost}}积分</text>
+            <view class="progress-bar" wx:if="{{item.stock > 0}}">
+              <view class="progress" style="width: {{(item.stock/20)*100}}%"></view>
+            </view>
+          </view>
+        </view>
+        <button 
+          class="redeem-btn {{currentPoints < item.points_cost || item.stock <= 0 ? 'disabled' : ''}}" 
+          data-id="{{item.id}}" 
+          bindtap="redeemReward"
+        >
+          {{currentPoints >= item.points_cost ? (item.stock > 0 ? '立即兑换' : '已售罄') : '积分不足'}}
+        </button>
+      </view>
+    </view>
+    
+    <view wx:if="{{rewards.length === 0 && !loading}}" class="empty-state">
+      <image class="empty-icon" src="/images/empty.png"></image>
+      <text class="empty-text">暂无奖品</text>
+    </view>
+  </scroll-view>
+  
+  <!-- 兑换记录 -->
+  <scroll-view wx:if="{{activeTab === 'history'}}" scroll-y class="history-list">
+    <view class="section-title">
+      <text>兑换历史</text>
+    </view>
+    
+    <view wx:for="{{history}}" wx:key="id" class="history-card">
+      <view class="history-image">
+        <image src="{{item.imageUrl}}" 
+               mode="aspectFill"
+               binderror="handleImageError" />
+      </view>
+      
+      <view class="history-info">
+        <view class="history-header">
+          <text class="history-name">{{item.reward_name}}</text>
+          <text class="history-points">-{{item.points_cost}}积分</text>
+        </view>
+        <view class="history-footer">
+          <text class="history-time">{{item.created_at}}</text>
+          <view class="status-badge {{getStatusClass(item.status)}}">
+            {{item.status || '待发货'}}
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <view wx:if="{{history.length === 0 && !loading}}" class="empty-state">
+      <image class="empty-icon" src="/images/empty.png"></image>
+      <text class="empty-text">暂无兑换记录</text>
+    </view>
+  </scroll-view>
+  
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-state">
+    <image class="loading-icon" src="/images/loading.gif"></image>
+    <text>加载中...</text>
+  </view>
+  
+  <!-- 兑换弹窗 -->
+  <view wx:if="{{showRedeemDialog}}" class="redeem-modal">
+    <view class="modal-mask" bindtap="closeRedeemDialog"></view>
+    <view class="modal-content">
+      <view class="modal-header">
+        <text>确认兑换</text>
+        <text class="close-btn" bindtap="closeRedeemDialog">×</text>
+      </view>
+      <view class="modal-body">
+        <view class="reward-preview">
+          <view class="preview-image">
+            <image src="{{currentReward.imageUrl}}" 
+                   mode="aspectFill"
+                   binderror="handleImageError" />
+          </view>
+          <view class="preview-info">
+            <text class="preview-name">{{currentReward.name}}</text>
+            <text class="preview-points">{{currentReward.points_cost}}积分</text>
+          </view>
+        </view>
+        
+        <view class="form-group">
+          <view class="form-input">
+            <input 
+              type="number" 
+              placeholder="请输入手机号码" 
+              value="{{phoneNumber}}"
+              bindinput="handlePhoneInput"
+            />
+          </view>
+          <view class="form-input">
+            <input 
+              placeholder="请输入详细收货地址" 
+              value="{{address}}"
+              bindinput="handleAddressInput"
+            />
+          </view>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <button class="modal-btn cancel" bindtap="closeRedeemDialog">取消</button>
+        <button class="modal-btn confirm" bindtap="confirmRedeem">确认兑换</button>
+      </view>
+    </view>
+  </view>
+</view>

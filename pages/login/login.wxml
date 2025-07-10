@@ -1,0 +1,49 @@
+<view class="container">
+  <view class="title">{{isRegister ? '用户注册' : '用户登录'}}</view>
+  
+  <view class="input-group">
+    <text class="label">账号：</text>
+    <input 
+      type="text"
+      placeholder="请输入10位以内账号"
+      maxlength="10"
+      value="{{username}}"
+      bindinput="bindUsernameInput"
+    />
+  </view>
+
+  <view class="input-group">
+    <text class="label">密码：</text>
+    <input 
+      password
+      placeholder="请输入10位以内密码"
+      maxlength="10"
+      value="{{password}}"
+      bindinput="bindPasswordInput"
+    />
+  </view>
+
+  <button 
+    type="primary" 
+    bindtap="submit"
+    loading="{{loading}}"
+    disabled="{{loading}}"
+  >
+    {{isRegister ? '立即注册' : '立即登录'}}
+  </button>
+
+  <view class="toggle-mode" bindtap="toggleMode">
+    {{isRegister ? '已有账号？去登录' : '没有账号？去注册'}}
+  </view>
+
+  <!-- 状态反馈区域 -->
+  <view class="status-box">
+    <view wx:if="{{loading}}" class="status-loading">
+      <image src="/images/loading.gif" mode="widthFix" class="loading-icon"/>
+      <text>{{statusMessage}}</text>
+    </view>
+    <view wx:if="{{!loading && statusMessage}}" class="status-{{statusMessage.includes('成功') ? 'success' : 'error'}}">
+      <text>{{statusMessage}}</text>
+    </view>
+  </view>
+</view>

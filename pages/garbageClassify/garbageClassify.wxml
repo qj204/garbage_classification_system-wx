@@ -1,0 +1,102 @@
+<view class="container">
+  <!-- 背景装饰元素 -->
+  <view class="bg-decorations">
+    <view class="bubble bubble-1"></view>
+    <view class="bubble bubble-2"></view>
+    <view class="bubble bubble-3"></view>
+  </view>
+
+  <!-- 标题 -->
+  <view class="header">
+    <image class="header-icon" src="/images/logo.png" mode="aspectFit" />
+    <text class="header-title">垃圾分类助手</text>
+  </view>
+
+  <!-- 选项卡 -->
+  <view class="method-tabs">
+    <button class="tab {{method === 'text' ? 'active' : ''}}" 
+            bindtap="chooseMethod" 
+            data-method="text"
+            hover-class="tab-hover">
+      <image class="tab-icon" src="{{textSearchImage}}" mode="aspectFit" binderror="handleImageError" />
+      <text>文字查询</text>
+      <view class="tab-underline"></view>
+    </button>
+    <button class="tab {{method === 'image' ? 'active' : ''}}" 
+            bindtap="chooseMethod" 
+            data-method="image"
+            hover-class="tab-hover">
+      <image class="tab-icon" src="{{imageSearchImage}}" mode="aspectFit" binderror="handleImageError" />
+      <text>图片识别</text>
+      <view class="tab-underline"></view>
+    </button>
+  </view>
+
+  <!-- 文字输入框 -->
+  <view class="search-box animated {{method === 'text' ? 'fadeIn' : ''}}" wx:if="{{method === 'text'}}">
+    <view class="search-bar">
+      <input 
+        type="text" 
+        placeholder="输入垃圾名称，如：电池" 
+        value="{{inputValue}}"
+        bindinput="handleInput"
+        class="search-input"
+      />
+      <button class="search-btn" bindtap="searchByText" hover-class="btn-hover">
+        {{loading ? '查询中...' : '查询'}}
+        <image class="search-icon" src="/images/search.png" mode="aspectFit" wx:if="{{!loading}}" />
+        <image class="loading-icon" src="/images/loading.gif" mode="aspectFit" wx:if="{{loading}}" />
+      </button>
+    </view>
+    <!-- 搜索历史 -->
+    <view class="history-box" wx:if="{{showHistory && searchHistory.length > 0}}">
+      <view class="history-title">最近搜索</view>
+      <view class="history-items">
+        <block wx:for="{{searchHistory}}" wx:key="*this">
+          <view class="history-item" bindtap="searchFromHistory" data-keyword="{{item}}">
+            {{item}}
+            <image class="history-icon" src="/images/history.png" />
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="error-message" wx:if="{{errorMessage}}">{{errorMessage}}</view>
+  </view>
+
+  <!-- 图片识别区域 -->
+  <view class="image-upload animated {{method === 'image' ? 'fadeIn' : ''}}" wx:if="{{method === 'image'}}">
+    <button class="upload-btn" bindtap="uploadImage" hover-class="btn-hover">
+      <image class="upload-icon" src="/images/camera.png" mode="aspectFit" />
+      {{loading ? '识别中...' : '选择图片识别'}}
+      <image class="loading-icon" src="/images/loading.gif" mode="aspectFit" wx:if="{{loading}}" />
+    </button>
+    <view class="upload-tips">支持拍照或从相册选择</view>
+  </view>
+
+  <!-- 结果展示 -->
+  <view class="result-card animated fadeIn" wx:if="{{result}}">
+    <view class="card-header">
+      <text class="card-title">分类结果</text>
+      <view class="type-tag type-{{result.type === '有害垃圾' ? 'harmful' : result.type === '厨余垃圾' ? 'kitchen' : result.type === '其他垃圾' ? 'other' : 'recyclable'}}">
+        {{result.type}}
+      </view>
+    </view>
+    <view class="card-body">
+      <view class="icon-container">
+        <image class="type-icon" src="/images/{{result.type === '有害垃圾' ? 'harmful' : result.type === '厨余垃圾' ? 'kitchen' : result.type === '其他垃圾' ? 'other' : 'recyclable'}}.png" />
+      </view>
+      <view class="result-content">
+        <view class="result-title">{{result.name}}</view>
+        <view class="probability" wx:if="{{result.probability}}">识别准确率: {{result.probability}}</view>
+        <view class="result-suggestion">
+          <image class="suggestion-icon" src="/images/tip.png" />
+          <text class="suggestion-text">{{result.suggestion}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="card-footer">
+      <image class="footer-icon" src="/images/recycle.png" />
+      <text>保护环境，从垃圾分类开始</text>
+    </view>
+  </view>
+</view>

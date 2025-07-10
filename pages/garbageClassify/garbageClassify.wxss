@@ -1,0 +1,422 @@
+/* 基础样式 */
+page {
+  background-color: #f8f9fa;
+  font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* 容器样式 */
+.container {
+  padding: 20px;
+  position: relative;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* 背景装饰元素 */
+.bg-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(9, 187, 7, 0.1);
+}
+
+.bubble-1 {
+  width: 200px;
+  height: 200px;
+  top: -50px;
+  right: -50px;
+}
+
+.bubble-2 {
+  width: 150px;
+  height: 150px;
+  bottom: 100px;
+  left: -30px;
+}
+
+.bubble-3 {
+  width: 100px;
+  height: 100px;
+  bottom: -30px;
+  right: 100px;
+}
+
+/* 头部样式 */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.header-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.header-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 选项卡样式 - 更新 */
+.method-tabs {
+  display: flex;
+  margin-bottom: 25px;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.tab {
+  flex: 1;
+  background: white;
+  color: #666;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0;
+  margin: 0 8px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.tab-hover {
+  transform: translateY(-2px);
+}
+
+.tab.active {
+  background: linear-gradient(135deg, #09BB07, #25D366);
+  color: white;
+  box-shadow: 0 6px 16px rgba(9, 187, 7, 0.3);
+}
+
+.tab-underline {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+.tab.active .tab-underline {
+  width: 60%;
+}
+
+.tab-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.tab.active .tab-icon {
+  transform: scale(1.1);
+}
+
+/* 搜索框样式 - 更新 */
+.search-box {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  display: flex;
+  margin-bottom: 15px;
+  background: white;
+  border-radius: 12px;
+  padding: 5px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 15px;
+  border: none;
+  background: transparent;
+}
+
+.search-btn {
+  margin-left: 10px;
+  background: linear-gradient(135deg, #09BB07, #25D366);
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(9, 187, 7, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(9, 187, 7, 0.3);
+}
+
+.search-icon, .upload-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+}
+
+.loading-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+}
+
+/* 历史记录样式 */
+.history-box {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.history-title {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+.history-items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.history-item {
+  background: #f5f5f5;
+  border-radius: 15px;
+  padding: 5px 12px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.history-item:active {
+  background: #e0e0e0;
+}
+
+.history-icon {
+  width: 14px;
+  height: 14px;
+  margin-left: 5px;
+}
+
+/* 图片上传区域 */
+.image-upload {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.upload-btn {
+  background: linear-gradient(135deg, #09BB07, #25D366);
+  color: white;
+  width: 80%;
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(9, 187, 7, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+.upload-tips {
+  font-size: 14px;
+  color: #999;
+  margin-top: 10px;
+}
+
+/* 卡片式结果样式 - 更新 */
+.result-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.type-tag {
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+}
+
+.type-harmful {
+  background: #FF4D4F;
+}
+
+.type-kitchen {
+  background: #FF9500;
+}
+
+.type-recyclable {
+  background: #1890FF;
+}
+
+.type-other {
+  background: #666;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-container {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.type-icon {
+  width: 180px;
+  height: 180px;
+  transition: all 0.5s ease;
+}
+
+.type-icon:active {
+  transform: scale(1.1);
+}
+
+.result-content {
+  text-align: center;
+  width: 100%;
+}
+
+.result-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.probability {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.result-suggestion {
+  background: #f8f8f8;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 15px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.suggestion-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.suggestion-text {
+  font-size: 15px;
+  color: #666;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+  font-size: 14px;
+  color: #999;
+}
+
+.footer-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+/* 错误消息样式 */
+.error-message {
+  color: #FF4D4F;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  padding: 8px;
+  background: #FFF2F0;
+  border-radius: 8px;
+}
+
+/* 动画效果 */
+.animated {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}

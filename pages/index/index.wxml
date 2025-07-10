@@ -1,0 +1,75 @@
+<view class="container">
+  <!-- 头部区域 -->
+  <view class="header">
+    <!-- 圆角方形小图标 -->
+    <image 
+      src="{{appImage}}"
+      class="app-icon"
+      mode="aspectFill"
+    />
+    
+    <!-- 文字区域 -->
+    <view class="title-container">
+      <view class="main-title">我叫舞舞舞</view>
+      <view class="sub-title">世界予你手中</view>
+    </view>
+
+    <!-- 搜索框 -->
+    <view class="search-container">
+      <icon type="search" size="16" color="#999"></icon>
+      <input 
+        class="search-input" 
+        placeholder="搜索" 
+        confirm-type="search"
+        value="{{searchValue}}"
+        bindinput="handleSearchInput"
+        bindconfirm="doSearch"
+      />
+      <view class="search-history" wx:if="{{showSearchHistory && searchHistory.length > 0}}">
+        <view 
+          class="history-item" 
+          wx:for="{{searchHistory}}" 
+          wx:key="*this"
+          bindtap="searchFromHistory"
+          data-keyword="{{item}}"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 广告轮播 -->
+  <swiper 
+    class="ad-swiper" 
+    indicator-dots="{{true}}"
+    autoplay="{{true}}"
+    interval="5000"
+    duration="800"
+    easing-function="ease-out"
+    bindchange="swiperChange"
+  >
+    <block wx:for="{{adImages}}" wx:key="*this">
+      <swiper-item>
+        <image 
+          src="{{item}}" 
+          mode="aspectFill" 
+          class="ad-image"
+        />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!-- Doro动图 -->
+  <image 
+    src="../../images/doro.gif" 
+    class="doro-image" 
+    mode="widthFix"
+    bindtap="onTapDoro"
+  />
+
+  <!-- 分类按钮 -->
+  <view class="classify-btn" bindtap="goToClassify">
+    开始垃圾分类
+  </view>
+</view>

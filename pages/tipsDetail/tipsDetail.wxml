@@ -1,0 +1,50 @@
+<!-- pages/tipsDetail/tipsDetail.wxml -->
+<view class="detail-container" style="background-color: #f5e9dc;">
+  <!-- 返回按钮 -->
+  <view class="back-button" bindtap="onBack">
+    <image src="/images/back-icon.png" class="back-icon"></image>
+  </view>
+
+  <scroll-view scroll-y class="content-scroll" style="height: {{contentHeight}}px">
+    <view wx:if="{{loading}}" class="loading-container">
+      <image src="/images/loading.gif" class="loading-icon"></image>
+      <text>加载中...</text>
+    </view>
+
+    <view wx:if="{{error}}" class="error-container">
+      <image src="/images/error-icon.png" class="error-icon"></image>
+      <text>{{error}}</text>
+    </view>
+
+    <block wx:if="{{!loading && !error && article}}">
+      <!-- 文章头部 -->
+      <view class="article-header">
+        <image src="{{article.cover_image || '/images/default-cover.png'}}" class="detail-cover"></image>
+        <view class="header-overlay"></view>
+        <view class="header-content">
+          <text class="detail-title">{{article.title}}</text>
+          <view class="meta-info">
+            <text class="detail-date">{{article.updated_time}}</text>
+            <text class="detail-author" wx:if="{{article.author}}">{{article.author}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 文章内容 -->
+      <view class="article-content">
+        <rich-text nodes="{{article.content}}"></rich-text>
+      </view>
+
+      <!-- 装饰元素 -->
+      <view class="decoration-element top-left"></view>
+      <view class="decoration-element top-right"></view>
+      <view class="decoration-element bottom-left"></view>
+      <view class="decoration-element bottom-right"></view>
+    </block>
+  </scroll-view>
+
+  <!-- 分享按钮 -->
+  <view class="share-button" bindtap="onShare">
+    <image src="/images/share-icon.png" class="share-icon"></image>
+  </view>
+</view>

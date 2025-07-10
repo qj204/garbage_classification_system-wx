@@ -1,0 +1,70 @@
+<!-- pages/tips/tips.wxml -->
+<view class="container">
+  <!-- 搜索区域 -->
+  <view class="search-container">
+    <input 
+      class="search-input" 
+      placeholder="请输入文章标题关键词" 
+      placeholder-class="placeholder-style"
+      value="{{searchValue}}" 
+      bindinput="handleInputChange"
+      confirm-type="search"
+      bindconfirm="handleSearch"
+    />
+    <button 
+      class="search-btn" 
+      bindtap="handleSearch"
+      hover-class="button-hover"
+    >搜索</button>
+    <button 
+      wx:if="{{isSearching}}" 
+      class="clear-btn" 
+      bindtap="handleClearSearch"
+      hover-class="button-hover"
+    >清除</button>
+  </view>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+  
+  <!-- 错误提示 -->
+  <view wx:if="{{error}}" class="error-container">
+    <text class="error-icon">!</text>
+    <text class="error-text">{{error}}</text>
+  </view>
+  
+  <!-- 文章列表 -->
+  <view wx:if="{{!loading && !error}}" class="article-list">
+    <view wx:if="{{articles.length === 0}}" class="empty-container">
+      <text class="empty-icon">{{isSearching ? "🔍" : "📄"}}</text>
+      <text class="empty-text">
+        {{isSearching ? '没有找到相关文章' : '暂无文章，稍后再来看看吧'}}
+      </text>
+    </view>
+    
+    <block wx:else>
+      <view 
+        wx:for="{{articles}}" 
+        wx:key="id" 
+        class="article-item" 
+        bindtap="goToDetail" 
+        data-id="{{item.id}}"
+      >
+        <view class="article-title">{{item.title}}</view>
+        <view class="article-info">
+          <view class="article-meta">
+            <text class="meta-icon">👤</text>
+            <text class="meta-text">{{item.author_name || '未知作者'}}</text>
+          </view>
+          <view class="article-meta">
+            <text class="meta-icon">🕒</text>
+            <text class="meta-text">{{item.updated_time || '未知时间'}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

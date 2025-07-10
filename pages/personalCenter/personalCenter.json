@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "neon-border": "/components/neon-border/neon-border",
+    "cyber-button": "/components/cyber-button/cyber-button"
+  },
+  "navigationBarTitleText": "个人中心",
+  "navigationBarBackgroundColor": "#0a0a1a",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#0a0a1a",
+  "enablePullDownRefresh": false
+}

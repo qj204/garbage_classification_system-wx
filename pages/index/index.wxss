@@ -1,0 +1,118 @@
+/* 容器 */
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx;
+  background-color: #fff;
+}
+
+/* 头部区域 */
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+  gap: 12rpx; /* 元素间距 */
+}
+
+/* 圆角方形图标 */
+.app-icon {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 12rpx; /* 圆角大小 */
+  flex-shrink: 0;
+  background-color: #f5f5f5; /* 备用背景 */
+}
+
+/* 文字区域 */
+.title-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto; /* 向左推挤 */
+  padding-right: 15rpx;
+}
+
+.main-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5rpx;
+}
+
+.sub-title {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 搜索框 */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  border-radius: 50rpx;
+  padding: 10rpx 20rpx;
+  flex-grow: 1;
+  min-width: 0; /* 允许压缩 */
+}
+
+.search-icon {
+  margin-right: 10rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+/* 搜索历史 */
+.search-history {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  margin-top: 10rpx;
+  padding: 10rpx 0;
+}
+
+.history-item {
+  padding: 15rpx 20rpx;
+  font-size: 26rpx;
+  color: #333;
+}
+
+/* 广告轮播 */
+.ad-swiper {
+  width: 100%;
+  height: 500rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin-bottom: 40rpx;
+}
+
+.ad-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* Doro动图 */
+.doro-image {
+  width: 50%;
+  margin: 0 auto 20rpx;
+  display: block;
+}
+
+/* 分类按钮 */
+.classify-btn {
+  background: #1989fa;
+  color: white;
+  text-align: center;
+  padding: 25rpx;
+  border-radius: 50rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-top: 20rpx;
+}

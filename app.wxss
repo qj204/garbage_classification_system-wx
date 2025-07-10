@@ -1,0 +1,42 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+:root {
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --text-primary: #e0e0e0;
+  --text-secondary: #aaaaaa;
+  --border-color: #333333;
+  --primary-color: #1976D2;
+  --error-color: #cf6679;
+}
+
+/* 深色模式基础样式 */
+.dark-mode {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+}
+
+.dark-card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.dark-text {
+  color: var(--text-primary);
+}
+
+.dark-text-secondary {
+  color: var(--text-secondary);
+}
+
+.dark-border {
+  border-color: var(--border-color);
+}
