@@ -1,0 +1,3 @@
+<view class="neon-border" style="--color: {{color}}">
+  <slot></slot>
+</view>

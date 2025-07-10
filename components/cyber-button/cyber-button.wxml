@@ -1,0 +1,12 @@
+<view 
+  class="cyber-button {{type ? 'cyber-button-' + type : ''}} {{disabled ? 'cyber-button-disabled' : ''}}"
+  style="--color: {{color}}; --text-color: {{textColor || color}}"
+  bindtap="onTap"
+>
+  <text class="button-text">{{text}}</text>
+  <view class="button-glow"></view>
+  <view class="button-corner button-corner-tl"></view>
+  <view class="button-corner button-corner-tr"></view>
+  <view class="button-corner button-corner-bl"></view>
+  <view class="button-corner button-corner-br"></view>
+</view>

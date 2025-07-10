@@ -1,0 +1,91 @@
+.cyber-button {
+  position: relative;
+  padding: 12rpx 30rpx;
+  border: 1px solid var(--color, #00ffff);
+  color: var(--text-color, var(--color, #00ffff));
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 0;
+  font-size: 28rpx;
+  font-family: 'Courier New', monospace;
+  text-align: center;
+  overflow: hidden;
+  transition: all 0.3s;
+  letter-spacing: 2rpx;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.cyber-button:active {
+  background-color: rgba(0, 255, 255, 0.1);
+}
+
+.cyber-button-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.button-text {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 0 5px var(--color, #00ffff);
+}
+
+.button-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color, #00ffff);
+  opacity: 0;
+  filter: blur(10px);
+  transition: opacity 0.3s;
+}
+
+.cyber-button:active .button-glow {
+  opacity: 0.3;
+}
+
+/* 赛博朋克风格的四个角 */
+.button-corner {
+  position: absolute;
+  width: 10rpx;
+  height: 10rpx;
+  border-color: var(--color, #00ffff);
+  border-style: solid;
+  border-width: 0;
+  pointer-events: none;
+}
+
+.button-corner-tl {
+  top: 0;
+  left: 0;
+  border-top-width: 2rpx;
+  border-left-width: 2rpx;
+}
+
+.button-corner-tr {
+  top: 0;
+  right: 0;
+  border-top-width: 2rpx;
+  border-right-width: 2rpx;
+}
+
+.button-corner-bl {
+  bottom: 0;
+  left: 0;
+  border-bottom-width: 2rpx;
+  border-left-width: 2rpx;
+}
+
+.button-corner-br {
+  bottom: 0;
+  right: 0;
+  border-bottom-width: 2rpx;
+  border-right-width: 2rpx;
+}
+
+/* 危险按钮样式 */
+.cyber-button-danger {
+  --color: #ff00aa;
+  --text-color: #ff5555;
+}
